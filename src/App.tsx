@@ -1,10 +1,6 @@
-import Characters from "./components/Characters/Characters";
 import Logo from "./components/Logo";
-import Navbar from "./components/Navbar";
 import Routing from "./components/Routing";
 import Search from "./components/Search/Search";
-import Videos from "./components/Videos/Videos";
-import { useAppSelector } from "./store/hooks";
 
 function App() {
   return (

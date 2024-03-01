@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useAppDispatch } from "../store/hooks";
 import {
   onActiveCharacters,
   onDisabledCharacters,
@@ -6,9 +6,6 @@ import {
 import { onActiveVideos, onDisabledVideos } from "../store/slices/videosSlice";
 
 const Navbar = () => {
-  const videos = useAppSelector((state) => state.videos);
-  const characters = useAppSelector((state) => state.videos);
-
   const dispatch = useAppDispatch();
 
   const handleActiveVideos = () => {

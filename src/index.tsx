@@ -3,9 +3,8 @@ import App from "./App";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import Routing from "./components/Routing";
+import "./index.css";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

@@ -2,22 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import preview from "../../assets/preview.jpg";
 
 interface IInitialState {
-  active: boolean;
+  isActive: boolean;
   video: {
-    id?: number;
-    title?: string;
-    image?: string;
-    season?: string;
-    series?: number;
-    description?: string;
+    id: number;
+    title: string;
+    image: string;
+    season: string;
+    series: number;
+    description: string;
   }[];
   currentSeason: {
-    id?: number;
-    title?: string;
-    image?: string;
-    season?: string;
-    series?: number;
-    description?: string;
+    id: number;
+    title: string;
+    image: string;
+    season: string;
+    series: number;
+    description: string;
   }[];
   currentVideo: {
     id?: number;
@@ -30,7 +30,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  active: true,
+  isActive: true,
   video: [
     {
       id: 1,
@@ -106,18 +106,18 @@ const videosSlice = createSlice({
   initialState,
   reducers: {
     onActiveVideos: (state) => {
-      state.active = true;
+      state.isActive = true;
     },
     onDisabledVideos: (state) => {
-      state.active = false;
+      state.isActive = false;
     },
-    selectSeason: (state, action) => {
+    selectSeason: (state, { payload }) => {
       state.currentSeason = state.video.filter(
-        (item) => item.season === action.payload
+        (item) => item.season === payload
       );
     },
-    getVideo: (state, action) => {
-      let current = state.video.find((item) => item.id === action.payload);
+    getVideo: (state, { payload }) => {
+      let current = state.video.find((item) => item.id === payload);
       state.currentVideo = { ...current };
     },
   },

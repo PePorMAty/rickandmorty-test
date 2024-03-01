@@ -1,7 +1,3 @@
-import { FC, useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
-import { selectSeason } from "../../store/slices/videosSlice";
-
 interface ISelectVideo {
   setSeason: (value: string) => void;
 }

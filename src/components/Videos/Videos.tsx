@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import SelectVideo from "./SelectVideo";
 import { getVideo, selectSeason } from "../../store/slices/videosSlice";
 import { Link } from "react-router-dom";
+import SelectVideo from "./SelectVideo";
 
 const Videos = () => {
   const [season, setSeason] = useState("1");
@@ -16,7 +16,7 @@ const Videos = () => {
   return (
     <div className="mt-16 mb-8">
       <SelectVideo setSeason={setSeason} />
-      <div className="grid grid-cols-5 gap-8">
+      <div className="grid grid-cols-4 gap-8">
         {currentSeason.map((elem) => (
           <Link
             to={`/video/${elem.id}`}

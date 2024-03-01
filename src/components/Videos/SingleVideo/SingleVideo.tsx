@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector } from "../../../store/hooks";
 
 const SingleVideo = () => {
   const { currentVideo } = useAppSelector((state) => state.videos);
