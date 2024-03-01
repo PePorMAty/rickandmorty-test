@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface initialStateI {
+interface IInitialState {
   active: boolean;
 }
 
-const initialState: initialStateI = {
+const initialState: IInitialState = {
   active: false,
 };
 

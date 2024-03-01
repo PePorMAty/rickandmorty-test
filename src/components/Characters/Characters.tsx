@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const Characters = (props: Props) => {
+const Characters = () => {
   return <div className="mt-12">Characters</div>;
 };
 
