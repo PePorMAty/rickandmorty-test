@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import videosSlice from "./slices/videosSlice";
 import charactersSlice from "./slices/charactersSlice";
+import locationsSlice from "./slices/locationSlice";
 
 export const store = configureStore({
   reducer: {
     videos: videosSlice,
     characters: charactersSlice,
+    locations: locationsSlice,
   },
 });
 

@@ -6,7 +6,7 @@ import SelectVideo from "./SelectVideo";
 
 const Videos = () => {
   const [season, setSeason] = useState("1");
-  const { currentSeason } = useAppSelector((state) => state.videos);
+  const { currentSeason } = useAppSelector((state) => state.videos.data);
 
   const dispatch = useAppDispatch();
   useEffect(() => {

@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCharacter } from "../../store/slices/charactersSlice";
+import { getLocation } from "../../store/slices/locationSlice";
 
-const Characters = () => {
-  const { characters } = useAppSelector((state) => state.characters.data);
+const Locations = () => {
+  const { locations } = useAppSelector((state) => state.locations.data);
   const dispatch = useAppDispatch();
 
   return (
     <div className="mt-16 mb-8">
       <div className="grid grid-cols-5 gap-8">
-        {characters.map((elem) => (
+        {locations.map((elem) => (
           <Link
-            to={`/character/${elem.id}`}
+            to={`/location/${elem.id}`}
             className="cursor-pointer mb-4 hover:opacity-80"
             key={elem.id}
-            onClick={() => dispatch(getCharacter(elem.id))}
+            onClick={() => dispatch(getLocation(elem.id))}
           >
             <img
-              className="rounded-xl mb-2 h-80"
+              className="rounded-xl mb-2 h-40 w-full"
               src={elem.image}
               alt="preview"
             />
@@ -29,4 +29,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default Locations;

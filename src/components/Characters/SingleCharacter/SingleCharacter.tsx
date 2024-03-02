@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../store/hooks";
 
 const SingleCharacter = () => {
-  const { currentCharacter } = useAppSelector((state) => state.characters);
+  const { currentCharacter } = useAppSelector((state) => state.characters.data);
 
   return (
     <div className="mt-16">
       <div className="flex">
         <img
-          className="w-80"
+          className="w-80 rounded-md"
           src={currentCharacter.image}
           alt={currentCharacter.name}
         />
@@ -40,6 +41,12 @@ const SingleCharacter = () => {
               {currentCharacter.description}
             </span>
           </div>
+          <Link
+            to="/"
+            className="mt-10 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80"
+          >
+            <p className="">Back</p>
+          </Link>
         </div>
       </div>
     </div>
