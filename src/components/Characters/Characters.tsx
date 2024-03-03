@@ -17,7 +17,7 @@ const Characters = () => {
             onClick={() => dispatch(getCharacter(elem.id))}
           >
             <img
-              className="rounded-xl mb-2 h-80"
+              className="rounded-xl mb-2 w-full h-4/6"
               src={elem.image}
               alt="preview"
             />

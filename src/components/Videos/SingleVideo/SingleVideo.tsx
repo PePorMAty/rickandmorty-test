@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../store/hooks";
 
 const SingleVideo = () => {
   const { currentVideo } = useAppSelector((state) => state.videos.data);
+
+  const naviate = useNavigate();
 
   return (
     <div>
@@ -19,12 +21,12 @@ const SingleVideo = () => {
           </div>
           <h3 className="font-bold mt-4 ml-4">{currentVideo.title}</h3>
           <p className="ml-4 mt-8">{currentVideo.description}</p>
-          <Link
-            to="/"
-            className="mt-10 ml-4 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80"
+          <p
+            className="mt-10 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80 cursor-pointer ml-4"
+            onClick={() => naviate(-1)}
           >
-            <p className="">Back</p>
-          </Link>
+            Back
+          </p>
         </div>
       </div>
     </div>

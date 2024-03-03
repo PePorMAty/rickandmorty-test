@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../store/hooks";
 
 const SingleLocation = () => {
   const { currentLocation } = useAppSelector((state) => state.locations.data);
+
+  const naviate = useNavigate();
 
   return (
     <div className="mt-16">
@@ -32,12 +34,12 @@ const SingleLocation = () => {
               {currentLocation.description}
             </span>
           </div>
-          <Link
-            to="/"
-            className="mt-20 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80"
+          <p
+            className="mt-10 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80 cursor-pointer"
+            onClick={() => naviate(-1)}
           >
-            <p className="">Back</p>
-          </Link>
+            Back
+          </p>
         </div>
       </div>
     </div>

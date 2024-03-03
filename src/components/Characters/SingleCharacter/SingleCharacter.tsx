@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../store/hooks";
 
 const SingleCharacter = () => {
   const { currentCharacter } = useAppSelector((state) => state.characters.data);
 
+  const naviate = useNavigate();
+
   return (
     <div className="mt-16">
       <div className="flex">
         <img
-          className="w-80 rounded-md"
+          className="rounded-md w-4/12"
           src={currentCharacter.image}
           alt={currentCharacter.name}
         />
@@ -41,12 +43,12 @@ const SingleCharacter = () => {
               {currentCharacter.description}
             </span>
           </div>
-          <Link
-            to="/"
-            className="mt-10 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80"
+          <p
+            className="mt-10 bg-lime-500 w-max px-2 rounded-sm hover:opacity-80 cursor-pointer"
+            onClick={() => naviate(-1)}
           >
-            <p className="">Back</p>
-          </Link>
+            Back
+          </p>
         </div>
       </div>
     </div>

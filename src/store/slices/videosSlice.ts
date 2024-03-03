@@ -4,6 +4,7 @@ import { initialVideoData } from "../../stubData/videosData";
 
 const initialState: IIinitialStateVideo = {
   isActive: true,
+  filteredVideo: [],
   data: initialVideoData,
 };
 
@@ -26,10 +27,20 @@ const videosSlice = createSlice({
       let current = state.data.video.find((item) => item.id === payload);
       state.data.currentVideo = { ...current };
     },
+    filterVideo: (state, { payload }) => {
+      state.filteredVideo = state.data.video.filter((item) => {
+        return item.title.toLowerCase().includes(payload.toLowerCase());
+      });
+    },
   },
 });
 
-export const { onActiveVideos, onDisabledVideos, selectSeason, getVideo } =
-  videosSlice.actions;
+export const {
+  onActiveVideos,
+  onDisabledVideos,
+  selectSeason,
+  getVideo,
+  filterVideo,
+} = videosSlice.actions;
 
 export default videosSlice.reducer;

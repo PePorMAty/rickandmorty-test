@@ -5,6 +5,7 @@ import { initialCharactersData } from "../../stubData/charactersData";
 
 const initialState: IInitialStateCharacter = {
   isActive: false,
+  filteredCharacters: [],
   data: initialCharactersData,
 };
 
@@ -22,10 +23,19 @@ const characterSlice = createSlice({
       let current = state.data.characters.find((item) => item.id === payload);
       state.data.currentCharacter = { ...current };
     },
+    filterCharacter: (state, { payload }) => {
+      state.filteredCharacters = state.data.characters.filter((item) => {
+        return item.name.toLowerCase().includes(payload.toLowerCase());
+      });
+    },
   },
 });
 
-export const { onActiveCharacters, onDisabledCharacters, getCharacter } =
-  characterSlice.actions;
+export const {
+  onActiveCharacters,
+  onDisabledCharacters,
+  getCharacter,
+  filterCharacter,
+} = characterSlice.actions;
 
 export default characterSlice.reducer;
