@@ -7,17 +7,17 @@ const Characters = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className="mt-16 mb-8">
+    <div className="mt-16">
       <div className="grid grid-cols-5 gap-8">
         {characters.map((elem) => (
           <Link
             to={`/character/${elem.id}`}
-            className="cursor-pointer mb-4 hover:opacity-80"
+            className="cursor-pointer hover:opacity-80"
             key={elem.id}
             onClick={() => dispatch(getCharacter(elem.id))}
           >
             <img
-              className="rounded-xl mb-2 w-full h-4/6"
+              className="rounded-xl mb-2 w-full h-60"
               src={elem.image}
               alt="preview"
             />

@@ -43,7 +43,7 @@ interface ICharacter {
   image: string;
   species: string;
   status: string;
-  age: number;
+  age: number | string;
   placeOfOrigin: string;
   description: string;
 }
@@ -54,7 +54,7 @@ interface ICurrentCharacter {
   image?: string;
   species?: string;
   status?: string;
-  age?: number;
+  age?: number | string;
   placeOfOrigin?: string;
   description?: string;
 }
@@ -65,7 +65,7 @@ interface IFilteredCharacter {
   image?: string;
   species?: string;
   status?: string;
-  age?: number;
+  age?: number | string;
   placeOfOrigin?: string;
   description?: string;
 }

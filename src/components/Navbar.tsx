@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   onActiveCharacters,
@@ -16,25 +17,34 @@ const Navbar = () => {
   );
   const isActiveLocations = useAppSelector((state) => state.locations.isActive);
 
+  /* const [page, setPage] = useState("videos");
+   */
   const dispatch = useAppDispatch();
 
   const handleActiveVideos = () => {
     dispatch(onActiveVideos());
     dispatch(onDisabledCharacters());
     dispatch(onDisabledLocation());
+    /* setPage("videos"); */
   };
 
   const handleActiveCharacters = () => {
     dispatch(onActiveCharacters());
     dispatch(onDisabledVideos());
     dispatch(onDisabledLocation());
+    /* setPage("characters"); */
   };
 
   const handleACtiveLocation = () => {
     dispatch(onActiveLocation());
     dispatch(onDisabledVideos());
     dispatch(onDisabledCharacters());
+    /* setPage("locations"); */
   };
+
+  /* useEffect(() => {
+    localStorage.setItem("page", page);
+  }, [page]); */
 
   return (
     <div className="flex justify-center px-10">

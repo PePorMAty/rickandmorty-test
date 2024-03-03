@@ -5,17 +5,25 @@ import { Link } from "react-router-dom";
 import SelectVideo from "./SelectVideo";
 
 const Videos = () => {
-  const [season, setSeason] = useState("1");
+  const [season, setSeason] = useState(localStorage.getItem("season") ?? "1");
   const { currentSeason } = useAppSelector((state) => state.videos.data);
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     dispatch(selectSeason(season));
+    localStorage.getItem("season");
   }, [dispatch, season]);
 
   return (
     <div className="mt-16 mb-8">
-      <SelectVideo setSeason={setSeason} />
+      <div className="flex">
+        <h1 className="mr-8 text-3xl">
+          Season {localStorage.getItem("season")}
+        </h1>
+        <SelectVideo setSeason={setSeason} />
+      </div>
+
       <div className="grid grid-cols-4 gap-8">
         {currentSeason.map((elem) => (
           <Link

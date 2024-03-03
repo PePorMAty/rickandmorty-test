@@ -14,6 +14,9 @@ const videosSlice = createSlice({
   reducers: {
     onActiveVideos: (state) => {
       state.isActive = true;
+      /* if (localStorage.getItem("page") === "videos") {
+        state.isActive = true;
+      } */
     },
     onDisabledVideos: (state) => {
       state.isActive = false;

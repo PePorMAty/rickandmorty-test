@@ -13,7 +13,12 @@ const SearchPage = () => {
 
   return (
     <div className="mt-16 mb-8">
-      Search
+      <p className="mb-8 font-bold text-xl"> Search:</p>
+
+      {!filteredCharacters.length &&
+        !filteredLocations.length &&
+        !filteredVideo.length && <div>Not found</div>}
+
       <div className="grid grid-cols-5 gap-8">
         {filteredCharacters.map((elem) => (
           <Link

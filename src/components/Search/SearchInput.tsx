@@ -20,7 +20,6 @@ const SearchInput = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("sub");
 
     setSubmit(true);
     setTimeout(() => {
@@ -48,7 +47,7 @@ const SearchInput = () => {
       </div>
       <Link
         to={`/search/${value}`}
-        className="absolute mb-1 flex flex-col justify-center right-80 top-10 after:content-[''] after:absolute after:right-6 after:bg-lime-500 after:w-0.5 after:h-9"
+        className="absolute mb-1 flex flex-col justify-center right-80 top-10 after:content-[''] after:absolute after:right-8 after:bg-lime-500 after:w-0.5 after:h-9"
       >
         <FaSearch />
       </Link>
