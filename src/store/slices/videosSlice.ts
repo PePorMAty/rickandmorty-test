@@ -3,7 +3,7 @@ import { IIinitialStateVideo } from "../../types";
 import { initialVideoData } from "../../stubData/videosData";
 
 const initialState: IIinitialStateVideo = {
-  isActive: true,
+  isActive: false,
   filteredVideo: [],
   data: initialVideoData,
 };
@@ -13,10 +13,9 @@ const videosSlice = createSlice({
   initialState,
   reducers: {
     onActiveVideos: (state) => {
-      state.isActive = true;
-      /* if (localStorage.getItem("page") === "videos") {
+      if (localStorage.getItem("page") === "videos") {
         state.isActive = true;
-      } */
+      }
     },
     onDisabledVideos: (state) => {
       state.isActive = false;

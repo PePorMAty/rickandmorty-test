@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   onActiveCharacters,
@@ -17,34 +17,35 @@ const Navbar = () => {
   );
   const isActiveLocations = useAppSelector((state) => state.locations.isActive);
 
-  /* const [page, setPage] = useState("videos");
-   */
   const dispatch = useAppDispatch();
 
   const handleActiveVideos = () => {
+    localStorage.setItem("page", "videos");
     dispatch(onActiveVideos());
-    dispatch(onDisabledCharacters());
     dispatch(onDisabledLocation());
-    /* setPage("videos"); */
+    dispatch(onDisabledCharacters());
   };
 
   const handleActiveCharacters = () => {
+    localStorage.setItem("page", "characters");
     dispatch(onActiveCharacters());
-    dispatch(onDisabledVideos());
     dispatch(onDisabledLocation());
-    /* setPage("characters"); */
+    dispatch(onDisabledVideos());
   };
 
   const handleACtiveLocation = () => {
+    localStorage.setItem("page", "locations");
     dispatch(onActiveLocation());
     dispatch(onDisabledVideos());
     dispatch(onDisabledCharacters());
-    /* setPage("locations"); */
   };
 
-  /* useEffect(() => {
-    localStorage.setItem("page", page);
-  }, [page]); */
+  useEffect(() => {
+    dispatch(onActiveVideos());
+    dispatch(onActiveCharacters());
+    dispatch(onActiveLocation());
+    localStorage.getItem("page");
+  }, [dispatch]);
 
   return (
     <div className="flex justify-center px-10">

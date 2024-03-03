@@ -14,7 +14,9 @@ const characterSlice = createSlice({
   initialState,
   reducers: {
     onActiveCharacters: (state) => {
-      state.isActive = true;
+      if (localStorage.getItem("page") === "characters") {
+        state.isActive = true;
+      }
     },
     onDisabledCharacters: (state) => {
       state.isActive = false;
@@ -23,10 +25,31 @@ const characterSlice = createSlice({
       let current = state.data.characters.find((item) => item.id === payload);
       state.data.currentCharacter = { ...current };
     },
-    filterCharacter: (state, { payload }) => {
+    filterCharacterSearch: (state, { payload }) => {
       state.filteredCharacters = state.data.characters.filter((item) => {
         return item.name.toLowerCase().includes(payload.toLowerCase());
       });
+    },
+    filterCharacters: (state, { payload }) => {
+      if (payload.status && payload.species) {
+        state.filteredCharacters = state.data.characters.filter(
+          (item) =>
+            item.species === payload.species && item.status == payload.status
+        );
+      }
+      if (payload.status && !payload.species) {
+        state.filteredCharacters = state.data.characters.filter(
+          (item) => item.status === payload.status
+        );
+      }
+      if (!payload.status && payload.species) {
+        state.filteredCharacters = state.data.characters.filter(
+          (item) => item.species === payload.species
+        );
+      }
+      if (!payload.status && !payload.species) {
+        state.filteredCharacters = state.data.characters;
+      }
     },
   },
 });
@@ -35,7 +58,8 @@ export const {
   onActiveCharacters,
   onDisabledCharacters,
   getCharacter,
-  filterCharacter,
+  filterCharacterSearch,
+  filterCharacters,
 } = characterSlice.actions;
 
 export default characterSlice.reducer;

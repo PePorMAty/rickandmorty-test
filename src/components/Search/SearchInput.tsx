@@ -2,7 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
-import { filterCharacter } from "../../store/slices/charactersSlice";
+import { filterCharacterSearch } from "../../store/slices/charactersSlice";
 import { filterLocation } from "../../store/slices/locationSlice";
 import { filterVideo } from "../../store/slices/videosSlice";
 
@@ -13,7 +13,7 @@ const SearchInput = () => {
 
   const handleOnchange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    dispatch(filterCharacter(value));
+    dispatch(filterCharacterSearch(value));
     dispatch(filterLocation(value));
     dispatch(filterVideo(value));
   };

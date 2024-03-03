@@ -13,10 +13,9 @@ const locationsSlice = createSlice({
   initialState,
   reducers: {
     onActiveLocation: (state) => {
-      state.isActive = true;
-      /* if (localStorage.getItem("page") === "locations") {
+      if (localStorage.getItem("page") === "locations") {
         state.isActive = true;
-      } */
+      }
     },
     onDisabledLocation: (state) => {
       state.isActive = false;

@@ -1,8 +1,8 @@
-interface ISelectVideo {
+interface Props {
   setSeason: (value: string) => void;
 }
 
-const SelectVideo = ({ setSeason }: ISelectVideo) => {
+const SelectVideo = ({ setSeason }: Props) => {
   const handleChange = (value: string) => {
     localStorage.setItem("season", value);
     setSeason(value);

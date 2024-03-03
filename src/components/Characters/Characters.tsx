@@ -1,15 +1,31 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCharacter } from "../../store/slices/charactersSlice";
+import {
+  getCharacter,
+  filterCharacters,
+} from "../../store/slices/charactersSlice";
+import SelectCharacters from "./SelectCharacters";
+import { useEffect, useState } from "react";
 
 const Characters = () => {
-  const { characters } = useAppSelector((state) => state.characters.data);
+  const { filteredCharacters } = useAppSelector((state) => state.characters);
+
+  const [status, setStatus] = useState(localStorage.getItem("status") ?? "");
+  const [species, setSpecies] = useState(localStorage.getItem("species") ?? "");
+
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(filterCharacters({ status, species }));
+    localStorage.getItem("status");
+    localStorage.getItem("species");
+  }, [dispatch, status, species]);
 
   return (
     <div className="mt-16">
+      <SelectCharacters setStatus={setStatus} setSpecies={setSpecies} />
       <div className="grid grid-cols-5 gap-8">
-        {characters.map((elem) => (
+        {filteredCharacters.map((elem) => (
           <Link
             to={`/character/${elem.id}`}
             className="cursor-pointer hover:opacity-80"
