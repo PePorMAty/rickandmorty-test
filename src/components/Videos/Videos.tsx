@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getVideo, selectSeason } from "../../store/slices/videosSlice";
-import { Link } from "react-router-dom";
-import SelectVideo from "./SelectVideo";
+import Select from "../Select";
 
 const Videos = () => {
   const [season, setSeason] = useState(localStorage.getItem("season") ?? "1");
   const { currentSeason } = useAppSelector((state) => state.videos.data);
+  const { video } = useAppSelector((state) => state.videos.data);
 
   const dispatch = useAppDispatch();
+
+  const filteredSeason = video.reduce<string[]>((acc, item) => {
+    return acc.includes(item.season) ? acc : [...acc, item.season];
+  }, []);
+
+  const handleChangeSelect = (value: string) => {
+    localStorage.setItem("season", value);
+    setSeason(value);
+  };
 
   useEffect(() => {
     dispatch(selectSeason(season));
@@ -18,12 +28,13 @@ const Videos = () => {
   return (
     <div className="mt-16 mb-8">
       <div className="flex">
-        <h1 className="mr-8 text-3xl">
-          Season {localStorage.getItem("season")}
-        </h1>
-        <SelectVideo setSeason={setSeason} />
+        <h1 className="mr-8 text-3xl">{localStorage.getItem("season")}</h1>
+        <Select
+          handleChange={handleChangeSelect}
+          title={"season"}
+          array={filteredSeason}
+        />
       </div>
-
       <div className="grid grid-cols-4 gap-8">
         {currentSeason.map((elem) => (
           <Link

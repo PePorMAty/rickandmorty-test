@@ -29,6 +29,14 @@ const locationsSlice = createSlice({
         return item.name.toLowerCase().includes(payload.toLowerCase());
       });
     },
+    selectLocationType: (state, { payload }) => {
+      state.filteredLocations = state.data.locations.filter(
+        (item) => item.type === payload.type
+      );
+      if (!payload.type) {
+        state.filteredLocations = state.data.locations;
+      }
+    },
   },
 });
 
@@ -37,6 +45,7 @@ export const {
   onDisabledLocation,
   getLocation,
   filterLocation,
+  selectLocationType,
 } = locationsSlice.actions;
 
 export default locationsSlice.reducer;

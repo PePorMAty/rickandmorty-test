@@ -1,6 +1,6 @@
+import { ChangeEvent, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { filterCharacterSearch } from "../../store/slices/charactersSlice";
 import { filterLocation } from "../../store/slices/locationSlice";

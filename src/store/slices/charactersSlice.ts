@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import { IInitialStateCharacter } from "../../types";
 import { initialCharactersData } from "../../stubData/charactersData";
 
@@ -30,7 +29,7 @@ const characterSlice = createSlice({
         return item.name.toLowerCase().includes(payload.toLowerCase());
       });
     },
-    filterCharacters: (state, { payload }) => {
+    selectCharacters: (state, { payload }) => {
       if (payload.status && payload.species) {
         state.filteredCharacters = state.data.characters.filter(
           (item) =>
@@ -59,7 +58,7 @@ export const {
   onDisabledCharacters,
   getCharacter,
   filterCharacterSearch,
-  filterCharacters,
+  selectCharacters,
 } = characterSlice.actions;
 
 export default characterSlice.reducer;
