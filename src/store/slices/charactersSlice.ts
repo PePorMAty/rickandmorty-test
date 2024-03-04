@@ -30,23 +30,15 @@ const characterSlice = createSlice({
       });
     },
     selectCharacters: (state, { payload }) => {
-      if (payload.status && payload.species) {
-        state.filteredCharacters = state.data.characters.filter(
-          (item) =>
-            item.species === payload.species && item.status == payload.status
+      state.filteredCharacters = state.data.characters.filter((item) => {
+        return (
+          (!payload.status || payload.status === item.status) &&
+          (!payload.species || payload.species === item.species) &&
+          (!payload.gender || payload.gender === item.gender)
         );
-      }
-      if (payload.status && !payload.species) {
-        state.filteredCharacters = state.data.characters.filter(
-          (item) => item.status === payload.status
-        );
-      }
-      if (!payload.status && payload.species) {
-        state.filteredCharacters = state.data.characters.filter(
-          (item) => item.species === payload.species
-        );
-      }
-      if (!payload.status && !payload.species) {
+      });
+
+      if (!payload.status && !payload.species && !payload.gender) {
         state.filteredCharacters = state.data.characters;
       }
     },

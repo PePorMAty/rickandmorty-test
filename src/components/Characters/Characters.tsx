@@ -13,12 +13,16 @@ const Characters = () => {
 
   const [status, setStatus] = useState(localStorage.getItem("status") ?? "");
   const [species, setSpecies] = useState(localStorage.getItem("species") ?? "");
+  const [gender, setGender] = useState(localStorage.getItem("gender") ?? "");
 
   const filteredStatus = characters.reduce<string[]>((acc, item) => {
     return acc.includes(item.status) ? acc : [...acc, item.status];
   }, []);
   const filteredSpecies = characters.reduce<string[]>((acc, item) => {
     return acc.includes(item.species) ? acc : [...acc, item.species];
+  }, []);
+  const filteredGender = characters.reduce<string[]>((acc, item) => {
+    return acc.includes(item.gender) ? acc : [...acc, item.gender];
   }, []);
 
   const dispatch = useAppDispatch();
@@ -31,12 +35,17 @@ const Characters = () => {
     setSpecies(value);
     localStorage.setItem("species", value);
   };
+  const handleSelectGender = (value: string) => {
+    setGender(value);
+    localStorage.setItem("gender", value);
+  };
 
   useEffect(() => {
-    dispatch(selectCharacters({ status, species }));
+    dispatch(selectCharacters({ species, status, gender }));
     localStorage.getItem("status");
     localStorage.getItem("species");
-  }, [dispatch, status, species]);
+    localStorage.getItem("gender");
+  }, [dispatch, status, species, gender]);
 
   return (
     <div className="mt-16">
@@ -50,22 +59,32 @@ const Characters = () => {
         title="species"
         array={filteredSpecies}
       />
+      <Select
+        handleChange={handleSelectGender}
+        title="gender"
+        array={filteredGender}
+      />
+
       <div className="grid grid-cols-5 gap-8">
-        {filteredCharacters.map((elem) => (
-          <Link
-            to={`/character/${elem.id}`}
-            className="cursor-pointer hover:opacity-80"
-            key={elem.id}
-            onClick={() => dispatch(getCharacter(elem.id))}
-          >
-            <img
-              className="rounded-xl mb-2 w-full h-60"
-              src={elem.image}
-              alt="preview"
-            />
-            <h3 className="">{elem.name}</h3>
-          </Link>
-        ))}
+        {filteredCharacters.length !== 0 ? (
+          filteredCharacters.map((elem) => (
+            <Link
+              to={`/character/${elem.id}`}
+              className="cursor-pointer hover:opacity-80"
+              key={elem.id}
+              onClick={() => dispatch(getCharacter(elem.id))}
+            >
+              <img
+                className="rounded-xl mb-2 w-full h-60"
+                src={elem.image}
+                alt="preview"
+              />
+              <h3 className="">{elem.name}</h3>
+            </Link>
+          ))
+        ) : (
+          <div>Not found</div>
+        )}
       </div>
     </div>
   );

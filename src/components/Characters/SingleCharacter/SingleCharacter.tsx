@@ -28,6 +28,10 @@ const SingleCharacter = () => {
             <span className="font-bold ml-2">{currentCharacter.status}</span>
           </div>
           <div className="mb-4">
+            Gender:
+            <span className="font-bold ml-2">{currentCharacter.gender}</span>
+          </div>
+          <div className="mb-4">
             Age:
             <span className="font-bold ml-2">{currentCharacter.age}</span>
           </div>
