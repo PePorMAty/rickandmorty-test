@@ -5,7 +5,6 @@ interface Props {
 }
 
 const Select = ({ handleChange, title, array }: Props) => {
-  const value = localStorage.getItem(title);
   return (
     <select
       name={`select-${title}`}

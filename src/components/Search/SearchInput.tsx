@@ -20,7 +20,6 @@ const SearchInput = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     setSubmit(true);
     setTimeout(() => {
       setSubmit(false);
@@ -42,6 +41,7 @@ const SearchInput = () => {
             value={value}
             onChange={handleOnchange}
             onSubmit={handleSubmit}
+            data-testing="input-value"
           />
         </form>
       </div>
